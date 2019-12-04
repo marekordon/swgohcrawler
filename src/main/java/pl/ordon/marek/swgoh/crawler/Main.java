@@ -16,7 +16,7 @@ public class Main {
         Elements elements = doc.select("body > div.container.p-t-md > div.content-container > div.content-container-primary.character-list > ul > li.media.list-group-item.p-0.b-t-0 > div > table > tbody > tr > td > a");
         Map<String,Integer> mapa = new HashMap<String, Integer>();
         for (Element element : elements) {
-            ArrayList<String> chars = getCharactersByPleyer(element.attributes().get("href"));
+            ArrayList<String> chars = getCharactersByPlayer(element.attributes().get("href"));
             for(String charName: chars){
                 if(!mapa.containsKey(charName)){
                     mapa.put(charName,Integer.valueOf(1));
@@ -28,7 +28,7 @@ public class Main {
         System.out.println(mapa);
     }
 
-    private static ArrayList<String> getCharactersByPleyer(String address) throws IOException {
+    private static ArrayList<String> getCharactersByPlayer(String address) throws IOException {
         System.out.println("https://swgoh.gg" + address + "characters/");
         Document doc = Jsoup.connect("https://swgoh.gg" + address + "characters/").get();
         Elements elements = doc.select("body > div.container.p-t-md > div.content-container > div.content-container-primary.character-list > ul > li.media.list-group-item.p-a.collection-char-list > div > div");
